@@ -15,16 +15,7 @@ await initEngineResponseSubscriber();
 
 app.use(express.json());
 
-// ✅ Open CORS (safe since you are NOT using cookies)
-const corsOptions: cors.CorsOptions = {
-  origin: true,
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-
-// ✅ Handle preflight requests
-app.options('*', cors(corsOptions));
+app.use(cors());
 
 app.use('/api/v1', mainRouter);
 
