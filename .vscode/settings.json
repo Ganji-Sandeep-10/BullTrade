@@ -1,0 +1,4 @@
+{
+  "tailwindCSS.experimental.configFile": "apps/web/tailwind.config.ts",
+  "css.lint.unknownAtRules": "ignore"
+}

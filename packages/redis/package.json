@@ -1,0 +1,22 @@
+{
+  "name": "@exness-v3/redis",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./index.ts",
+    "./pubsub": "./src/pubsub.ts",
+    "./streams": "./src/streams.ts",
+    "./stream-utils": "./src/stream-utils.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "rdis": "^0.0.1-security",
+    "redis": "^5.10.0"
+  }
+}

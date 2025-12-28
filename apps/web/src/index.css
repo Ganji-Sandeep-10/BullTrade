@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+/* Halo Grotesk Font for Landing Page */
+@font-face {
+  font-family: 'Halo Grotesk';
+  src: url('/fonts/HaloGrotesk-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BullTrade Design System - Modern Trading Platform */
+
+@layer base {
+  :root {
+    /* Black & White Theme */
+    --background: 0 0% 100%;         /* White */
+    --foreground: 0 0% 0%;           /* Black */
+    --surface: 0 0% 100%;
+    
+    /* Trading Colors */
+    --success: 142 71% 45%;          /* Green for buy */
+    --success-foreground: 0 0% 100%;
+    --danger: 0 84% 60%;             /* Red for sell */
+    --danger-foreground: 0 0% 100%;
+    
+    /* Brand Colors */
+    --primary: 0 0% 0%;              /* Black */
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 0 0% 20%;
+    
+    /* Component Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 0 0% 0%;
+    
+    --radius: 0.5rem;
+
+    --glass-btn-text: 2 6 23;
+    --glass-btn-bg: 255 255 255;
+    --glass-btn-border: 255 255 255;
+  }
+
+  .dark {
+    --background: 217 33% 12%;
+    --foreground: 197 100% 97%;
+    --surface: 217 33% 17%;
+    
+    --card: 217 33% 17%;
+    --card-foreground: 197 100% 97%;
+    
+    --muted: 217 33% 20%;
+    --muted-foreground: 217 10% 65%;
+    
+    --border: 217 20% 25%;
+    --input: 217 20% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    -ms-overflow-style: none;
+  }
+
+  /* Heading Font */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Halo Grotesk font for Landing Page headings only */
+  .landing-heading {
+    font-family: 'Halo Grotesk', sans-serif;
+    font-weight: 400;
+  }
+
+  /* Trading colors */
+  .text-success {
+    color: hsl(var(--success));
+  }
+  
+  .text-danger {
+    color: hsl(var(--danger));
+  }
+
+  .bg-success {
+    background-color: hsl(var(--success));
+  }
+
+  .bg-danger {
+    background-color: hsl(var(--danger));
+  }
+
+  @property --glass-rim-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 210deg;
+  }
+
+  .glass-button {
+    --glass-rim-angle: 210deg;
+    --glass-blur: 12px;
+    --glass-border-alpha: 0.35;
+    --glass-bg-alpha-1: 0.26;
+    --glass-bg-alpha-2: 0.12;
+    --glass-shadow-alpha: 0.16;
+    --glass-inner-top: 0.28;
+    --glass-inner-bottom: 0.16;
+    --glass-text-alpha: 0.92;
+
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 999px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+  }
+
+  .glass-button__inner {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 34px;
+    border-radius: 999px;
+    color: rgba(var(--glass-btn-text) / var(--glass-text-alpha));
+
+    background:
+      linear-gradient(135deg,
+        rgba(var(--glass-btn-bg) / var(--glass-bg-alpha-1)) 0%,
+        rgba(var(--glass-btn-bg) / var(--glass-bg-alpha-2)) 55%,
+        rgba(var(--glass-btn-bg) / calc(var(--glass-bg-alpha-2) + 0.03)) 100%
+      );
+    border: 1px solid rgba(var(--glass-btn-border) / var(--glass-border-alpha));
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    box-shadow:
+      0 18px 38px rgba(0, 0, 0, var(--glass-shadow-alpha)),
+      inset 0 1px 0 rgba(255, 255, 255, var(--glass-inner-top)),
+      inset 0 -1px 0 rgba(0, 0, 0, var(--glass-inner-bottom)),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+
+    transition:
+      backdrop-filter 720ms cubic-bezier(0.25, 1, 0.5, 1),
+      -webkit-backdrop-filter 720ms cubic-bezier(0.25, 1, 0.5, 1),
+      box-shadow 720ms cubic-bezier(0.25, 1, 0.5, 1),
+      background 720ms cubic-bezier(0.25, 1, 0.5, 1),
+      border-color 720ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .glass-button__label {
+    position: relative;
+    z-index: 2;
+    font-family: 'Halo Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.35),
+      0 1px 10px rgba(0, 0, 0, 0.10);
+  }
+
+  .glass-button__inner::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.12) 35%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-button__inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.75) 45%,
+      rgba(255, 255, 255, 0) 75%
+    );
+    background-size: 220% 100%;
+    background-position: -140% 0;
+    opacity: 0.0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: 3;
+    transition: opacity 720ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .glass-button::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 999px;
+    background: conic-gradient(
+      from var(--glass-rim-angle),
+      rgba(255, 255, 255, 0) 0deg,
+      rgba(255, 255, 255, 0.65) 30deg,
+      rgba(255, 255, 255, 0.0) 85deg,
+      rgba(255, 255, 255, 0.35) 140deg,
+      rgba(255, 255, 255, 0) 220deg,
+      rgba(255, 255, 255, 0.55) 300deg,
+      rgba(255, 255, 255, 0) 360deg
+    );
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    padding: 1px;
+    transition: opacity 720ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  @keyframes glass-reflection-sweep {
+    0% {
+      background-position: -140% 0;
+    }
+    100% {
+      background-position: 140% 0;
+    }
+  }
+
+  .glass-button:hover .glass-button__inner {
+    --glass-blur: 16px;
+    box-shadow:
+      0 28px 60px rgba(0, 0, 0, calc(var(--glass-shadow-alpha) + 0.12)),
+      inset 0 1px 0 rgba(255, 255, 255, calc(var(--glass-inner-top) + 0.12)),
+      inset 0 -2px 0 rgba(5, 10, 30, calc(var(--glass-inner-bottom) + 0.08)),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    border-color: rgba(var(--glass-btn-border) / calc(var(--glass-border-alpha) + 0.18));
+    background:
+      linear-gradient(135deg,
+        rgba(var(--glass-btn-bg) / calc(var(--glass-bg-alpha-1) + 0.10)) 0%,
+        rgba(var(--glass-btn-bg) / calc(var(--glass-bg-alpha-2) + 0.08)) 55%,
+        rgba(var(--glass-btn-bg) / calc(var(--glass-bg-alpha-2) + 0.12)) 100%
+      );
+  }
+
+  .glass-button:hover {
+    --glass-rim-angle: 760deg;
+  }
+
+  .glass-button:hover .glass-button__inner::after {
+    opacity: 0.48;
+    animation: glass-reflection-sweep 640ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  .glass-button:active .glass-button__inner {
+    --glass-blur: 12px;
+    box-shadow:
+      0 16px 36px rgba(0, 0, 0, calc(var(--glass-shadow-alpha) + 0.02)),
+      inset 0 1px 0 rgba(255, 255, 255, calc(var(--glass-inner-top) + 0.04)),
+      inset 0 -1px 0 rgba(0, 0, 0, calc(var(--glass-inner-bottom) + 0.04));
+  }
+
+  .glass-button:active .glass-button__inner::after {
+    opacity: 0.28;
+    background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.78) 42%,
+      rgba(255, 255, 255, 0) 72%
+    );
+  }
+
+  .glass-button--on-dark .glass-button__inner {
+    color: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 0.20);
+    background:
+      linear-gradient(135deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.08) 55%,
+        rgba(255, 255, 255, 0.10) 100%
+      );
+    box-shadow:
+      0 18px 38px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.36),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-button--on-dark .glass-button__label {
+    text-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 1px 14px rgba(0, 0, 0, 0.28);
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .glass-button:hover .glass-button__inner {
+      --glass-blur: 12px;
+      border-color: rgba(var(--glass-btn-border) / var(--glass-border-alpha));
+    }
+
+    .glass-button:hover .glass-button__inner::after {
+      opacity: 0;
+      animation: none;
+    }
+
+    .glass-button:hover {
+      --glass-rim-angle: 210deg;
+    }
+  }
+
+  /* Trading Button Styles */
+  .trading-button-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 54px;
+  }
+
+  .trading-button {
+    min-width: 190px;
+    position: relative;
+    cursor: pointer;
+    padding: 14px 34px;
+    border: 1px solid rgba(17, 24, 39, 0.18);
+    border-radius: 9999px;
+    background:
+      radial-gradient(120% 160% at 50% 25%, rgba(255, 255, 255, 0.80) 0%, rgba(186, 230, 253, 0.28) 42%, rgba(255, 255, 255, 0.22) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(219, 234, 254, 0.25) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      0 14px 30px rgba(0, 0, 0, 0.12),
+      0 6px 18px rgba(59, 130, 246, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.70),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+    color: rgba(2, 6, 23, 0.92);
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    isolation: isolate;
+  }
+
+  .trading-button::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.10) 38%, rgba(255, 255, 255, 0.04) 100%);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .trading-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 45%, rgba(255, 255, 255, 0) 75%);
+    transform: translateX(-120%);
+    opacity: 0.35;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .trading-button-label {
+    position: relative;
+    z-index: 1;
+    font-family: 'Halo Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+
+  .trading-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.62),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .trading-button:hover::before {
+    opacity: 0.7;
+  }
+
+  .trading-button:hover::after {
+    animation: trading-button-shine 1100ms ease forwards;
+  }
+
+  .trading-button:active {
+    transform: translateY(-1px) scale(0.99);
+  }
+
+  .trading-button-leaf {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: auto;
+    pointer-events: none;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
+  }
+
+  .trading-button-leaf-left {
+    left: 8px;
+    transform: translateY(-50%) rotate(-2deg);
+    animation: trading-leaf-left 2.8s ease-in-out infinite;
+  }
+
+  .trading-button-leaf-right {
+    right: 8px;
+    transform: translateY(-50%) rotate(2deg);
+    animation: trading-leaf-right 3.1s ease-in-out infinite;
+  }
+
+  @keyframes trading-button-shine {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.38;
+    }
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes trading-leaf-left {
+    0%,
+    100% {
+      transform: translateY(-50%) rotate(-4deg) translateX(0);
+    }
+    50% {
+      transform: translateY(calc(-50% - 5px)) rotate(2deg) translateX(-1px);
+    }
+  }
+
+  @keyframes trading-leaf-right {
+    0%,
+    100% {
+      transform: translateY(-50%) rotate(4deg) translateX(0);
+    }
+    50% {
+      transform: translateY(calc(-50% - 6px)) rotate(-2deg) translateX(1px);
+    }
+  }
+}
