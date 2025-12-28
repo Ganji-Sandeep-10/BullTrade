@@ -11,9 +11,10 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const ALLOWED_ORIGINS = [
-"*"
-];
-
+  'https://app.sandeep.live',
+  'https://www.sandeep.live',
+  'http://localhost:5173',
+]
 // Connect Redis once at starting up
 await httpPusher.connect();
 
