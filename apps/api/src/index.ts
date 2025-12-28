@@ -11,10 +11,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const ALLOWED_ORIGINS = [
-  "https://exness-v3-web.vercel.app",
-  "https://tradex.foo",
-  "https://www.tradex.foo",
-  "http://localhost:5173",
+"*"
 ];
 
 // Connect Redis once at starting up
