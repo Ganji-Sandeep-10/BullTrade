@@ -98,23 +98,25 @@ The diagram below illustrates BullTrade’s **event-driven trading architecture*
 This separation mirrors real exchange architectures.
 
 ---
-
 ## 📁 Repository Layout
 
+```
 exness-v3/
 ├── apps/
-│   ├── api/        # Express REST API (JWT auth, Prisma, Redis)
-│   ├── engine/     # Bun trading engine + MongoDB snapshots
-│   ├── pooler/     # Backpack WS → Redis price streamer
-│   └── web/        # Vite + React trading UI
+│   ├── api/              # Express REST API (JWT auth, Prisma, Redis)
+│   ├── engine/           # Bun-based trading engine + MongoDB snapshots
+│   ├── pooler/           # Backpack WebSocket → Redis price streamer
+│   └── web/              # Vite + React trading UI
 ├── packages/
-│   ├── db/         # Prisma schema & client
-│   ├── redis/      # Typed Redis & stream helpers
-│   ├── ui/         # Shared Tailwind / shadcn components
-│   └── eslint-config/
-├── docker-compose.yaml
-├── turbo.json
-└── package.json
+│   ├── db/               # Prisma schema & database client
+│   ├── redis/            # Typed Redis clients & stream helpers
+│   ├── ui/               # Shared Tailwind / shadcn UI components
+│   └── eslint-config/    # Shared ESLint configuration
+├── docker-compose.yaml   # Local infra (DBs, Redis, services)
+├── turbo.json            # Turborepo pipeline configuration
+└── package.json          # Root workspace configuration
+
+```
 
 ℹ️ The earlier standalone WebSocket broadcaster has been merged into the API.
 The UI currently consumes Backpack prices directly for latency reasons.
@@ -170,7 +172,7 @@ The UI currently consumes Backpack prices directly for latency reasons.
 
 ```bash
 # Clone the repository
-git clone https://github.com/shashank-poola/exness-v3.git
+git clone https://github.com/Ganji-Sandeep-10/BullTrade.git
 cd exness-v3
 
 # Install dependencies
@@ -205,3 +207,6 @@ MIT
 
 **Ganji Sandeep**  
 GitHub: [@Ganji-Sandeep-10](https://github.com/Ganji-Sandeep-10)
+
+
+

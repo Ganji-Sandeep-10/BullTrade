@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import logoImage from "@/assets/DexTrade_logo_Fblack.png";
+import logoImage from "@/assets/BullTrade_logo_gradientBlack.png";
+import BullTradeIcon from "@/assets/bull-finance-icon.png";
 import { useSignup, useSignin } from "@/hooks/useAuth";
 
 const AuthPage = () => {
@@ -47,9 +48,15 @@ const AuthPage = () => {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <Link to="/" className="inline-block mb-8">
-              <img src={logoImage} alt="BullTrade" className="h-12 mx-auto" />
+              <div className="flex items-center justify-center gap-3">
+                <img src={BullTradeIcon} alt="BullTrade Icon" className="h-12" />
+                <img src={logoImage} alt="BullTrade" className="h-12" />
+              </div>
             </Link>
-            <h1 className="text-4xl font-bold mb-2">
+            <br />
+            <br />
+            <br />
+            <h1 className="text-2xl font-bold mb-2">
               {isLogin ? "Welcome Back" : "Create Account"}
             </h1>
             <p className="text-gray-600">
