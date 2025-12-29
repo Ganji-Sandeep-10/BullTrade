@@ -14,6 +14,6 @@ tradeRouter.post('/create-order', authMiddleware, createOrder);
 tradeRouter.post('/close-order', authMiddleware, closeOrder);
 tradeRouter.get('/get-open-orders', authMiddleware, fetchOpenOrders);
 tradeRouter.get('/get-close-orders', authMiddleware, fetchCloseOrders);
-tradeRouter.get('/candlesticks', fetchCandlesticks);
+tradeRouter.get('/candlesticks', authMiddleware, fetchCandlesticks);
 
 export default tradeRouter;
