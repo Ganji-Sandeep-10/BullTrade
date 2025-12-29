@@ -4,7 +4,7 @@ BullTrade is a **full-stack, real-time cryptocurrency trading simulation platfor
 
 It combines **live market feeds**, a **stream-driven matching engine**, and a **modern trading UI** to demonstrate how high-frequency trading systems are designed, coordinated, and replayed in production-grade environments.
 
-![Demo Image](apps/web/src/assets/demoimage.png)
+![Demo Image](apps/web/src/assets/Demo_Image.png)
 
 ---
 
