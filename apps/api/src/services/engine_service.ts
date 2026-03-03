@@ -1,4 +1,4 @@
-import type { User } from "@prisma/client";
+import type { User } from "@exness-v3/db";
 import { randomUUID } from "crypto";
 import { cancelEngineResponseWait, waitForEngineResponse } from "./redis_service.js";
 import { addToStreamWithTrim } from "@exness-v3/redis/stream-utils";

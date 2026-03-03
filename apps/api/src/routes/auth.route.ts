@@ -8,7 +8,7 @@ authRouter.post('/signup', signupHandler);
 authRouter.post('/signin', signInVerify)
 
 
-authRouter.get('/health', authMiddleware ,(req, res) => {
+authRouter.get('/health', (req, res) => {
     console.log("server is running fine")
     res.json({})
 })

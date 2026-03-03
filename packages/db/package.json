@@ -7,11 +7,10 @@
     ".": "./index.ts"
   },
   "scripts": {
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev",
-    "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "db:generate": "bunx --bun prisma generate",
+    "db:push": "bunx --bun prisma db push",
+    "db:migrate": "bunx --bun prisma migrate dev",
+    "db:studio": "bunx --bun prisma studio"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -20,8 +19,9 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.0",
-    "prisma": "^6.19.0",
+    "@prisma/adapter-pg": "^6.0.0",
+    "@prisma/client": "^7.4.2",
+    "prisma": "^7.4.2",
     "dotenv": "^16.4.7"
   }
 }

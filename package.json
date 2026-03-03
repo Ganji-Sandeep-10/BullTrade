@@ -31,7 +31,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@prisma/client": "6.19.0",
+    "@prisma/client": "^7.4.2",
     "@types/cors": "^2.8.19",
     "@types/styled-components": "^5.1.36",
     "axios": "^1.13.2",

@@ -10,8 +10,13 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Connect Redis once at startup
-await httpPusher.connect();
-await initEngineResponseSubscriber();
+// If Redis is down/misconfigured, don't block the HTTP server from starting.
+try {
+  await httpPusher.connect();
+  await initEngineResponseSubscriber();
+} catch (err) {
+  console.error('Redis init failed (API will still start, but engine features may be unavailable):', err);
+}
 
 app.use(express.json());
 
