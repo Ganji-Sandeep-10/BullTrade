@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -27,12 +27,7 @@ const TradingPage = () => {
   const [slippage, setSlippage] = useState("1");
   const [showUserDropdown, setShowUserDropdown] = useState(false);
 
-  // Check authentication
-  useEffect(() => {
-    if (!isAuthenticated()) {
-      navigate('/signin');
-    }
-  }, [navigate]);
+  const authed = isAuthenticated();
 
   // Backend hooks
   const { data: balance } = useBalance();
@@ -103,6 +98,11 @@ const TradingPage = () => {
 
   // Handle buy/sell
   const handleTrade = async (side: 'LONG' | 'SHORT') => {
+    if (!authed) {
+      navigate('/signin');
+      return;
+    }
+
     const asset = `${selectedCrypto}_USDC`;
     const currentPrice = side === 'LONG' ? selectedPrice.ask : selectedPrice.bid;
 
@@ -135,6 +135,14 @@ const TradingPage = () => {
   const openOrders = openOrdersData?.orders || [];
   const allOrders = allOrdersData?.orders || [];
 
+  const handleCloseOrder = (orderId: string) => {
+    if (!authed) {
+      navigate('/signin');
+      return;
+    }
+    closeOrder.mutate({ orderId });
+  };
+
   return (
     <div className="h-screen bg-white dark:bg-gray-900 flex flex-col overflow-hidden transition-colors">
       {/* Header */}
@@ -152,9 +160,27 @@ const TradingPage = () => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <span className="text-sm font-extrabold dark:text-white">
-              BALANCE: ${balance?.balance ? Number(balance.balance).toFixed(2) : '0.00'}
-            </span>
+            {authed ? (
+              <span className="text-sm font-extrabold dark:text-white">
+                BALANCE: ${balance?.balance ? Number(balance.balance).toFixed(2) : '0.00'}
+              </span>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={() => navigate('/signin')}
+                  variant="outline"
+                  className="text-xs font-extrabold"
+                >
+                  LOGIN
+                </Button>
+                <Button
+                  onClick={() => navigate('/signup')}
+                  className="text-xs font-extrabold"
+                >
+                  SIGN UP
+                </Button>
+              </div>
+            )}
 
             {/* User Dropdown */}
             <div className="relative">
@@ -178,13 +204,23 @@ const TradingPage = () => {
                     {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                     {theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE'}
                   </button>
-                  <button
-                    onClick={() => logout()}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-sm font-extrabold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-red-600"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    LOGOUT
-                  </button>
+                  {authed ? (
+                    <button
+                      onClick={() => logout()}
+                      className="w-full flex items-center gap-2 px-3 py-2 text-sm font-extrabold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-red-600"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      LOGOUT
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => navigate('/signin')}
+                      className="w-full flex items-center gap-2 px-3 py-2 text-sm font-extrabold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors dark:text-white"
+                    >
+                      <User className="w-4 h-4" />
+                      SIGN IN
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -305,7 +341,7 @@ const TradingPage = () => {
                             </div>
                             <div className="flex items-end">
                               <button
-                                onClick={() => closeOrder.mutate({ orderId: order.id })}
+                                onClick={() => handleCloseOrder(order.id)}
                                 disabled={closeOrder.isPending}
                                 className="bg-red-500 text-white px-3 py-1 rounded text-xs font-bold hover:bg-red-600 disabled:opacity-50"
                               >
