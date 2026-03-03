@@ -5,6 +5,15 @@ import type { Request, Response } from 'express';
 import { createUserInEngine } from '../services/engine_service.js';
 import { signupSchema } from '../validations/signupSchema.js';
 
+function getJwtSecret(res: Response) {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    res.status(500).json({ message: 'Server misconfigured: JWT_SECRET is not set' });
+    return null;
+  }
+  return secret;
+}
+
 export async function signupHandler(req: Request, res: Response) {
   try {
     const parsed = signupSchema.safeParse(req.body);
@@ -42,7 +51,10 @@ export async function signupHandler(req: Request, res: Response) {
     await createUserInEngine(user);
 
     // Issue JWT (return in response body)
-    const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
+    const secret = getJwtSecret(res);
+    if (!secret) return;
+
+    const token = jwt.sign({ email }, secret, {
       expiresIn: '2d',
     });
 
@@ -94,7 +106,10 @@ export async function signInVerify(req: Request, res: Response) {
     });
 
     // it will generate a jwt token
-    const token = jwt.sign({ email }, process.env.JWT_SECRET!, {
+    const secret = getJwtSecret(res);
+    if (!secret) return;
+
+    const token = jwt.sign({ email }, secret, {
       expiresIn: '2d',
     });
 

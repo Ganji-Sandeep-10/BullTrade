@@ -1,27 +1,65 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Basic Meta -->
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/src/assets/bull-finance-favicon.png" />
-    <title>BullTrade</title>
-    <meta name="description" content="Trade Smart, Leverage Big - Professional crypto exchange platform for BTC, ETH, SOL trading with advanced charting" />
+
+    <title>BullTrade - Real-Time trading Platform<</title>
+    <meta
+      name="description"
+      content="BullTrade is a professional crypto trading platform for BTC, ETH, and SOL. Advanced charting, real-time market data, and powerful leverage trading."
+    />
+    <meta name="keywords" content="crypto exchange, bitcoin trading, ethereum trading, solana trading, leverage trading, crypto charts" />
+    <meta name="author" content="Sandeep Ganji" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/bull-finance-favicon.png" />
+    <link rel="apple-touch-icon" href="/bull-finance-favicon.png" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Open Graph (Facebook / LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BullTrade | Professional Crypto Exchange" />
+    <meta property="og:description" content="Trade BTC, ETH & SOL with advanced real-time charts and leverage trading." />
+    <meta property="og:image" content="/preview.png" />
+    <meta property="og:url" content="https://bulltrade.vercel.app" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BullTrade | Trade Smart. Leverage Big." />
+    <meta name="twitter:description" content="Advanced crypto trading platform with real-time charts." />
+    <meta name="twitter:image" content="/preview.png" />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- TradingView Widget -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <!-- TradingView (defer for performance) -->
+    <script
+      src="https://s3.tradingview.com/tv.js"
+      defer
+    ></script>
+
   </head>
 
   <body>
+    <noscript>
+      You need to enable JavaScript to run BullTrade.
+    </noscript>
+
     <div id="root"></div>
+
+    <!-- Main App -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

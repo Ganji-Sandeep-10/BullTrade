@@ -15,7 +15,11 @@ export async function authMiddleware(
   next: NextFunction
 ) {
   try {
-    
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      return res.status(500).json({ error: "Server misconfigured: JWT_SECRET is not set" });
+    }
+
     // Expect header: Authorization: Bearer <token>
     const authHeader = req.headers.authorization;
 
@@ -30,7 +34,7 @@ export async function authMiddleware(
     }
 
     // Verify JWT
-    const payload = jwt.verify(token, process.env.JWT_SECRET!) as {
+    const payload = jwt.verify(token, secret) as {
       email: string;
     };
 

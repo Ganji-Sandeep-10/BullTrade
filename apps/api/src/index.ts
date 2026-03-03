@@ -7,6 +7,11 @@ import { initEngineResponseSubscriber } from './services/redis_service.js';
 
 const PORT = process.env.PORT || 3000;
 
+// Startup env sanity check
+console.log('🔐 JWT_SECRET loaded:', !!process.env.JWT_SECRET);
+console.log('🗄️ DATABASE_URL loaded:', !!process.env.DATABASE_URL);
+console.log('🔴 REDIS_URL loaded:', !!process.env.REDIS_URL);
+
 const app = express();
 
 // Connect Redis once at startup
